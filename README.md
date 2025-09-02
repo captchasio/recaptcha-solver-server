@@ -105,7 +105,7 @@ A playwright and patchright with asyncio and Quart reCaptcha solver.
 6. **Start testing**:
    - Run the script (Check [🔧 Command line arguments](#-command-line-arguments) for better setup):
      ```bash
-     python api_solver.py
+     python server.py
      ```
      
 ---
