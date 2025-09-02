@@ -129,7 +129,7 @@ A playwright and patchright with asyncio and Quart reCaptcha solver.
 To start the container, use:
 - Change the TZ environment variable and ports to the correct one for yourself:
 ```sh
-docker run -d -p 3389:3389 -p 5000:5000 -e TZ=Asia/Baku --name repcaptcha_solver theyka/repcaptcha_solver:latest
+docker run -d -p 3389:3389 -p 5000:5000 -e TZ=Asia/Baku --name repcaptcha_solver captchasio/repcaptcha_solver:latest
 ```
 
 #### Connecting to the Container
