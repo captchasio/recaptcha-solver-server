@@ -16,7 +16,7 @@ A playwright and patchright with asyncio and Quart reCaptcha solver.
     <img src="https://img.shields.io/badge/LICENSE-CC%20BY%20NC%204.0-red?style=for-the-badge"/>
     <img src="https://img.shields.io/github/stars/captchasio/recaptcha-solver-server.svg?style=for-the-badge&color=red"/>
     <img src="https://img.shields.io/github/issues/captchasio/recaptcha-solver-server?style=for-the-badge&color=red"/>
-    <a href="https://t.me/codarea">
+    <a href="https://t.me/freecaptchabypass">
      <img src="https://img.shields.io/badge/Telegram%20Channel-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
     </a>
   </p>
