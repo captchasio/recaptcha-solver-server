@@ -354,14 +354,6 @@ class ReCaptchaAPIServer:
                         <p class="font-semibold mb-2 text-red-400">Example usage:</p>
                         <code class="text-sm break-all text-red-300">/recaptcha?url=https://example.com&sitekey=sitekey</code>
                     </div>
-
-                    <div class="bg-red-900 border-l-4 border-red-600 p-4 mb-6">
-                        <p class="text-red-200 font-semibold">This project is inspired by 
-                           <a href="https://github.com/Body-Alhoha/turnaround" class="text-red-300 hover:underline">Turnaround</a> 
-                           and is currently maintained by 
-                           <a href="https://github.com/Theyka" class="text-red-300 hover:underline">Theyka</a> 
-                           and <a href="https://github.com/sexfrance" class="text-red-300 hover:underline">Sexfrance</a>.</p>
-                    </div>
                 </div>
             </body>
             </html>
