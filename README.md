@@ -20,7 +20,7 @@ A playwright and patchright with asyncio and Quart reCaptcha solver.
      <img src="https://img.shields.io/badge/Telegram%20Channel-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
     </a>
   </p>
-</div>
+</div>  
 
 ---
 
