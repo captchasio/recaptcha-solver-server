@@ -152,8 +152,7 @@ docker run -d -p 3389:3389 -p 5000:5000 -e TZ=Asia/Baku --name repcaptcha_solver
 |------------|---------|-----------------------------------------------------------------------------|----------|
 | `url`       | string  | The target URL containing the CAPTCHA. (e.g., `https://example.com`) | Yes      |
 | `sitekey`   | string  | The site key for the CAPTCHA to be solved. (e.g., `0x4AAAAAAA`) | Yes      |
-| `action`    | string  | Action to trigger during CAPTCHA solving, e.g., `login`            | No       |
-| `action`    | string  | The captcha action. Example value: "verify"   | No       |
+| `action`    | string  | Action to trigger during CAPTCHA solving, e.g., `verify`            | No       |
 | `min_score` | string  | The captcha score.  Example value: "3.0"  | No       |
 | `invisible` | string  | This parameter determins if the CAPTCHA is invisible or not.    | No       |
 | `enterprise`| string  | To flag if the CAPTCHA is reCaptca Enterprise or not.    | No       |
