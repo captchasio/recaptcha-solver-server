@@ -1,0 +1,11 @@
+playwright
+pydub
+pytest-asyncio
+setuptools
+SpeechRecognition
+tenacity
+quart
+asyncio
+argparse
+patchright
+camoufox[geoip]
