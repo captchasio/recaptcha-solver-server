@@ -55,45 +55,13 @@ logger.addHandler(handler)
 class ReCaptchaAPIServer:
     HTML_TEMPLATE = """
     <!DOCTYPE HTML>
-    <html dir="ltr">
+    <html>
       <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, user-scalable=yes">
-        <title>ReCAPTCHA</title>
-        <link rel="stylesheet" href="https://www.gstatic.com/recaptcha/releases/07cvpCr3Xe3g2ttJNUkC6W0J/demo__ltr.css" type="text/css">
-        <script src='https://www.google.com/recaptcha/api.js' async defer nonce="1Oq6a4Q48ye5n0rCSFkdhg"></script>
+        <title>reCAPTCHA demo: Simple page</title>
+        <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
       </head>
-      <body>
-        <div class="sample-form">
-          <div class="">
-            <!-- BEGIN: ReCAPTCHA implementation example. -->
-            <!-- cf recaptcha -->
-            <script nonce="1Oq6a4Q48ye5n0rCSFkdhg">
-              var onSuccess = function(response) {
-                var errorDivs = document.getElementsByClassName("recaptcha-error");
-                if (errorDivs.length) {
-                  errorDivs[0].className = "";
-                }
-                var errorMsgs = document.getElementsByClassName("recaptcha-error-message");
-                if (errorMsgs.length) {
-                  errorMsgs[0].parentNode.removeChild(errorMsgs[0]);
-                }
-              };
-            </script>
-            <!-- Optional noscript fallback. -->
-            <noscript>
-              <div style="width: 302px; height: 462px;">
-                <!-- recaptcha sitekey -->             
-                <div>
-                  <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response"></textarea>
-                </div>
-              </div>
-              <br>
-            </noscript>
-            <!-- END: ReCAPTCHA implementation example. -->
-          </div>
-        </div>
+      <body>       
+         <div class="g-recaptcha" data-sitekey="<SITEKEY>" data-action="<ACTION>"></div>
       </body>
     </html>
     """
@@ -221,13 +189,9 @@ class ReCaptchaAPIServer:
                 logger.debug(f"Browser {index}: Setting up page data and route")
                 
             url_with_slash = url + "/" if not url.endswith("/") else url
-
-            recaptcha_div = f'<div id="recaptcha" class="g-recaptcha" data-sitekey="{sitekey}" data-callback="onSuccess" data-action="action"></div>'
-            recaptcha_iframe = f'<iframe src="/recaptcha/api/fallback?k={sitekey}" frameborder="0" scrolling="no"></iframe>'
-            
-            self.HTML_TEMPLATE.replace("<!-- recaptcha sitekey -->", recaptcha_iframe)
-
-            page_data = self.HTML_TEMPLATE.replace("<!-- cf recaptcha -->", recaptcha_div)
+           
+            self.HTML_TEMPLATE.replace("<ACTION>", action)
+            page_data = self.HTML_TEMPLATE.replace("<SITEKEY>", sitekey)
 
             await page.route(url_with_slash, lambda route: route.fulfill(body=page_data, status=200))
             await page.goto(url_with_slash)
