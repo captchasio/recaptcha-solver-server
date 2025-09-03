@@ -1,3 +1,12 @@
+"""
+"
+"  AUTHOR: Glenn Prialde
+"  DATE: 8/31/2025
+"  EMAIL: gprialde.gp@gmail.com
+"  WEBSITE: https://solverecaptchas.com
+"
+"""
+
 import os
 import sys
 import time
@@ -61,7 +70,7 @@ class ReCaptchaAPIServer:
         <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
       </head>
       <body>       
-         <div class="g-recaptcha" data-sitekey="<SITEKEY>" data-action="<ACTION>"></div>
+         <RECAPTCHA_DIV>
       </body>
     </html>
     """
@@ -190,8 +199,8 @@ class ReCaptchaAPIServer:
                 
             url_with_slash = url + "/" if not url.endswith("/") else url
            
-            self.HTML_TEMPLATE.replace("<ACTION>", action)
-            page_data = self.HTML_TEMPLATE.replace("<SITEKEY>", sitekey)
+            recaptcha_div = f'<div class="g-recaptcha" data-sitekey="{sitekey}" data-action="{action}"></div>'
+            page_data = self.HTML_TEMPLATE.replace("<RECAPTCHA_DIV>", recaptcha_div)
 
             await page.route(url_with_slash, lambda route: route.fulfill(body=page_data, status=200))
             await page.goto(url_with_slash)
@@ -213,7 +222,7 @@ class ReCaptchaAPIServer:
                     token = await solver.solve_recaptcha(wait=True)
 
                     try:
-                        self.results[task_id] = {"value": token, "elapsed_time": elapsed_time}
+                        self.results[task_id] = {"value": token, "elapsed_time": elapsed_time, "useragent": self.useragent}
                         self._save_results()
                                 
                         logger.success(f"Browser {index}: Successfully solved captcha - {COLORS.get('MAGENTA')}{token[:10]}{COLORS.get('RESET')} in {COLORS.get('GREEN')}{elapsed_time}{COLORS.get('RESET')} Seconds")
@@ -334,7 +343,7 @@ def parse_args():
     parser.add_argument('--browser_type', type=str, default='camoufox', help='Specify the browser type for the solver. Supported options: chromium, chrome, msedge, camoufox, firefox (default: chromium)')
     parser.add_argument('--thread', type=int, default=1, help='Set the number of browser threads to use for multi-threaded mode. Increasing this will speed up execution but requires more resources (default: 1)')
     parser.add_argument('--proxy', type=bool, default=False, help='Enable proxy support for the solver (Default: False)')
-    parser.add_argument('--host', type=str, default='127.0.0.1', help='Specify the IP address where the API solver runs. (Default: 190.2.144.94')
+    parser.add_argument('--host', type=str, default='127.0.0.1', help='Specify the IP address where the API solver runs. (Default: 127.0.0.1)')
     parser.add_argument('--port', type=str, default='8000', help='Set the port for the API solver to listen on. (Default: 8000)')
     return parser.parse_args()
 
